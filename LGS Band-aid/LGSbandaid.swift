@@ -14,13 +14,14 @@ class LGSbandaid {
 	var timeLGSlaunched = Date().addingTimeInterval(32768)
 	var timeUpdaterKilled = Date().addingTimeInterval(32768)
 	var LGSappName = "Logitech Gaming Software"
-	var LGSbestTime = -1
+	var LGSrunningTime = -1
+	let timeHistory = TimeHistory()
 	
 	
 	func setup(theUI:AppDelegate) {
 		theUI.setLGSrunStatus(status: "pending")
 		theUI.setLGSlaunchTime(minutes: -1)
-		theUI.setLGSbestTime(minutes: -1)
+		theUI.setLGSbestTime(status: "")
 		theUI.setUpdaterRunStatus(status: "pending")
 		theUI.setUpdaterKillTime(minutes: -1)
 	}
@@ -47,15 +48,14 @@ class LGSbandaid {
 		if LGSisRunning {
 			theUI.setLGSrunStatus(status: "Running")
 		} else {
+			if LGSrunningTime >= 0 { timeHistory.addTime(time: LGSrunningTime) }
 			launchLGS()
 			theUI.setLGSrunStatus(status: "Relaunched")
 			timeLGSlaunched = Date()
-			theUI.setLGSbestTime(minutes: LGSbestTime)
+			theUI.setLGSbestTime(status: "Recents: \(timeHistory.returnTimesCommaSeparated())")
 		}
-		let currentTimeInterval = Int(Date().timeIntervalSince(timeLGSlaunched))/60
-		theUI.setLGSlaunchTime(minutes: currentTimeInterval)
-		if currentTimeInterval > LGSbestTime {LGSbestTime = currentTimeInterval}
-		
+		LGSrunningTime = Int(Date().timeIntervalSince(timeLGSlaunched))/60
+		theUI.setLGSlaunchTime(minutes: LGSrunningTime)
 		
 		if UpdaterIsRunning {
 			let task = Process()

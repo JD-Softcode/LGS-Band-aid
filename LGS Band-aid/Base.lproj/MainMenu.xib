@@ -180,14 +180,14 @@
                     <textField identifier="lgsBestTime" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tyg-MB-apj">
                         <rect key="frame" x="76" y="152" width="273" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Last launched %1 minutes ago." id="a3m-8P-3gy">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Previous lives:" id="a3m-8P-3gy">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <button identifier="launchLGSbutton" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gdp-F0-gB5">
-                        <rect key="frame" x="66" y="13" width="113" height="32"/>
+                        <rect key="frame" x="60" y="13" width="113" height="32"/>
                         <buttonCell key="cell" type="push" title="Launch LGS" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GHm-Kp-FdJ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -197,7 +197,7 @@
                         </connections>
                     </button>
                     <button identifier="quitButton" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oNA-ZD-7D8">
-                        <rect key="frame" x="187" y="13" width="113" height="32"/>
+                        <rect key="frame" x="191" y="13" width="113" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="101" id="Sox-0l-snZ"/>
                         </constraints>

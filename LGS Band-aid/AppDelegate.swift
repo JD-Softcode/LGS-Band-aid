@@ -18,18 +18,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet weak var updaterStatusText: NSTextField!
 	@IBOutlet weak var updaterKillTimeText: NSTextField!
 	
-	var myTimer: Timer? = nil
-	var theApp:LGSbandaid? = nil
+	var myTimer = Timer()
+	var theApp = LGSbandaid()
 
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
-		theApp = LGSbandaid()
+		//theApp = LGSbandaid()
 		
-		theApp!.setup(theUI: self)
+		theApp.setup(theUI: self)
 		window.setIsVisible(true)
 		
 		myTimer = Timer.scheduledTimer(
 			timeInterval: 5.0,
-			target: theApp!,
+			target: theApp,
 			selector: #selector(LGSbandaid.timerTrigger),
 			userInfo: self,
 			repeats: true)
@@ -37,7 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	
 	@IBAction func launchLGSbtn(_ sender: NSButton) {
-		theApp!.launchLGS()
+		theApp.launchLGS()
 	}
 	
 	
@@ -57,12 +57,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 	
-	func setLGSbestTime(minutes: Int) {
-		if minutes >= 0 {
-			lgsBestTimeText.stringValue = "Longest survival: \(minutes) minute\(correctPlural(number: minutes))."
-		} else {
-			lgsBestTimeText.stringValue = ""
-		}
+	func setLGSbestTime(status: String) {
+		lgsBestTimeText.stringValue = status
 	}
 	
 	func setUpdaterRunStatus(status: String) {
@@ -88,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 
 	func applicationWillTerminate(_ aNotification: Notification) {
-		myTimer?.invalidate()
+		myTimer.invalidate()
 	}
 
 }
